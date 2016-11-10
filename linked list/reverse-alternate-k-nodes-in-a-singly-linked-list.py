@@ -1,4 +1,7 @@
 """
+reverse-alternate-k-nodes-in-a-singly-linked-list
+"""
+"""
 Reverse a Linked List in groups of given size
 Given a linked list, write a function to reverse every k nodes (where k is an input to the function). 
 """
@@ -37,36 +40,26 @@ class LinkedList:
 
 	@staticmethod
 	def rev_groups(head, size):
-		# reverse the first group of k elements
-		# then call recursively maybe
-		if size<1:
-			print "Not done dude!"
-			return head
 		if head is None or head.next is None:
 			return head
-
-		counter = 1
 		tail = head
+		counter = 1
 		while(counter<size and tail.next):
-			tail = tail.next
 			counter += 1
-		# print "counter", counter
-		# print "tail", tail.data
+			tail = tail.next
+		# we are at 1-2-3-4-5-6-7-8-9 we are at 3.
 		temp = tail.next
 		tail.next = None
 		new_head = LinkedList.reverse(head)
-		# print "nh", new_head.data
-		# print "ll", LinkedList.print_ll(new_head)
-		# nh3-2-1  temp4-5-6-7
-		# print "h", head.data
-		head.next = LinkedList.rev_groups(temp, size)
+		# 3-2-1 4-5-6-7-8-9
+		head.next = temp
+		counter = 1
+		tail = temp
+		while (counter<size and tail.next):
+			counter += 1
+			tail = tail.next
+		tail.next = LinkedList.rev_groups(tail.next, size)
 		return new_head
-
-		# 1-2-3-4-5-6-7 size is 3
-		# counter 1, head @ 2
-		# counter 2, head @3
-		# counter 3, head @4 not done
-		# pass
 
 
 if __name__ == "__main__":
@@ -90,5 +83,5 @@ if __name__ == "__main__":
 	ll.print_ll(ll.head) # 7 nodes
 
 	print "==rev=="
-	ll.print_ll(LinkedList.rev_groups(ll.head, 3))
+	ll.print_ll(LinkedList.rev_groups(ll.head, 2))
 	# ll.print_ll(LinkedList.reverse(ll.head))

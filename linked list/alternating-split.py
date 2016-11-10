@@ -35,16 +35,17 @@ class LinkedList:
 				del_node = None
 
 	def alt_spilt(self):
+		h1 = self.head
+		h2 = self.head.next
 		t1 = self.head
 		t2 = self.head.next
 		while (t1 and t2):
-			print self.head.data, self.head.next.data
 			t1.next = t2.next
 			if t2.next is not None:
 				t2.next = t2.next.next
 			t1 = t1.next
 			t2 = t2.next
-		return (self.head, self.head.next)
+		return (h1, h2)
 
 
 if __name__ == "__main__":
