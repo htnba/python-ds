@@ -1,6 +1,7 @@
 """
 Function to check if a singly linked list is palindrome
-Given a singly linked list of characters, write a function that returns true if the given list is palindrome, else false.
+Given a singly linked list of characters, write a function that returns true if the given list is palindrome,
+else false.
 """
 class Node:
 	def __init__(self, data):
